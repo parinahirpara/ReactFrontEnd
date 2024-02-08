@@ -86,10 +86,10 @@ export function CustomDataTable(props) {
                 </tbody>
             </Table>
             <div>
-                <Button color="danger" onClick={() => previousPage()} disabled={!canPreviousPage}>
+                <Button color="primary" onClick={() => previousPage()} disabled={!canPreviousPage}>
                     Previous
                 </Button>
-                <Button color="danger" onClick={() => nextPage()} disabled={!canNextPage}>
+                <Button color="primary" onClick={() => nextPage()} disabled={!canNextPage}>
                     Next
                 </Button>
             </div>

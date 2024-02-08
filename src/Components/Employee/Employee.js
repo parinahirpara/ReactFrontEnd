@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { ModalForm } from "./ModalForm";
 import { CustomDataTable } from "./CustomDataTable";
-import { Button } from 'reactstrap';
+import { Button,Label } from 'reactstrap';
 import { createEmployee, getAllEmployee, deleteCurrentEmployee, updateCurrentEmployee } from "../Services/EmployeeService";
 export function Employee(props) {
     const [employeeitems, setEmployeeItems] = useState([
@@ -88,6 +88,7 @@ export function Employee(props) {
         {
             Header: 'Employee Tag Number',
             accessor: 'emptagno',
+            enableColumnFilter:false
         },
         {
             Header: 'First Name',
@@ -138,24 +139,20 @@ export function Employee(props) {
                     <ModalForm buttonLabel="Add" addItemToState={addItemToState} />
                 </Col>
             </Row>
-            {
-                employeeitems.length > 0 &&
+            {employeeitems.length > 0 ? (
                 <Row>
                     <Col>
-                        {/* <DataTable
-                            items={employeeitems}
-                            updateState={updateState}
-                            deleteItemFromState={deleteItemFromState}
-                        /> */}
+                        <CustomDataTable columns={columns} items={employeeitems} />
                     </Col>
-                    <CustomDataTable
-                        columns={columns}
-                        items={employeeitems}
-                        
-                    />
                 </Row>
-
-            }
+            ) : (
+                <Row>
+                    <Col>
+                        <Label>No data found.</Label>
+                    </Col>
+                </Row>
+            )}
+            
 
 
         </Container>
