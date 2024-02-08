@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTable, usePagination, useGlobalFilter } from 'react-table';
+import { Label,Col,Row,Table,Button } from 'reactstrap';
 
 export function CustomDataTable(props) {
 
@@ -15,13 +16,13 @@ export function CustomDataTable(props) {
         canNextPage,
         prepareRow,
         setGlobalFilter,
-        setPageSize, // Add setPageSize here
-        state: { pageIndex, pageSize, globalFilter },
+        setPageSize, 
+        state: { pageSize, globalFilter },
     } = useTable(
         {
             columns:props.columns,
             data: props.items,
-            initialState: { pageIndex: 0, pageSize: 10 },
+            initialState: { pageIndex: 0, pageSize: 5 },
         },
         useGlobalFilter,
         usePagination
@@ -31,36 +32,37 @@ export function CustomDataTable(props) {
 
     return (
         <>
-            <div className='row'>
-                <div className='col-md-6'>
+            <Row>
+                <Col>
                 <label>Search</label>
                 <input
                     value={globalFilter || ''}
                     onChange={e => setGlobalFilter(e.target.value)}
                     placeholder="Search..."
                 />
-                </div>
-                <div className='col-md-6'> 
-                Show
+                </Col>
+                <Col> 
+                <Label>Show</Label>
                 <select
                     value={pageSize}
                     onChange={(e) => {
                         setPageSize(Number(e.target.value))
                     }}
                 >
-                    {[10, 20, 30, 40, 50].map(pageSize => (
+                    {[5, 10, 15, 20, 25].map(pageSize => (
                         <option key={pageSize} value={pageSize}>
                              {pageSize}
                         </option>
                     ))}
                 </select>
-                Entry
-                </div>
+                <Label>Entries</Label>
+                
+                </Col>
                 
                  
-            </div>
+            </Row>
            
-            <table {...getTableProps()} className="table table-hover">
+            <Table {...getTableProps()} className="table table-hover table-bordered">
                 <thead>
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
@@ -82,14 +84,14 @@ export function CustomDataTable(props) {
                         );
                     })}
                 </tbody>
-            </table>
+            </Table>
             <div>
-                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                <Button color="danger" onClick={() => previousPage()} disabled={!canPreviousPage}>
                     Previous
-                </button>
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
+                </Button>
+                <Button color="danger" onClick={() => nextPage()} disabled={!canNextPage}>
                     Next
-                </button>
+                </Button>
             </div>
         </>
     );

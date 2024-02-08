@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { ModalForm } from "./ModalForm";
-import { DataTable } from "./DataTable";
 import { CustomDataTable } from "./CustomDataTable";
-import { Table, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { createEmployee, getAllEmployee, deleteCurrentEmployee, updateCurrentEmployee } from "../Services/EmployeeService";
 export function Employee(props) {
     const [employeeitems, setEmployeeItems] = useState([

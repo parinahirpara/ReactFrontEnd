@@ -11,24 +11,24 @@ export function AddEditEmployee(props) {
         firstname: '',
         lastname: '',
         email: '',
-        department: null,
+        department: '',
         birthdate: '',
-        designation: null
+        designation: ''
     });
     const departmentOptions = [
-        { value: 1, label: "IT" },
-        { value: 2, label: "HR" },
-        { value: 3, label: "Finance" },
-        { value: 4, label: "Marketing" },
-        { value: 5, label: "Operations" }
+        { value: "IT", label: "IT" },
+        { value: "HR", label: "HR" },
+        { value: "Finance", label: "Finance" },
+        { value: "Marketing", label: "Marketing" },
+        { value: "Operations", label: "Operations" }
     ];
 
     const designationOptions = [
-        { value: 1, label: "Manager" },
-        { value: 2, label: "Team Lead" },
-        { value: 3, label: "Developer" },
-        { value: 4, label: "Analyst" },
-        { value: 5, label: "Coordinator" }
+        { value: "Manager", label: "Manager" },
+        { value: "Team Lead", label: "Team Lead" },
+        { value:"Developer", label: "Developer" },
+        { value:  "Analyst" , label: "Analyst" },
+        { value: "Coordinator", label: "Coordinator" }
     ];
     const validationSchema = Yup.object().shape({
         emptagno: Yup.string().required("Employee Tag Number is required").max(20, "Employee Tag Number must be at most 20 characters"),
